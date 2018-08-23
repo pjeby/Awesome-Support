@@ -49,7 +49,7 @@ function wpas_update_option( $option, $value, $add = false ) {
 
 	$options[ $option ] = $value;
 
-	return update_option( 'wpas_options', serialize( $options ) );
+	return update_option( 'wpas_options', $options );
 
 }
 

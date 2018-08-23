@@ -11,7 +11,7 @@ class WPAS_Test_Functions_Install extends WP_UnitTestCase {
 		}
 
 		$options  = get_option( 'wpas_options' );
-		$defaults = serialize( get_settings_defaults() );
+		$defaults = get_settings_defaults();
 		$this->assertEquals( $defaults, $options );
 	}
 

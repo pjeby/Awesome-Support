@@ -237,7 +237,7 @@ class AS_Admin_Setup_Wizard {
 		} else{
 			$options['support_products'] = '0';
 		}
-		update_option( 'wpas_options', serialize( $options ) );
+		update_option( 'wpas_options', $options );
 		wp_safe_redirect( esc_url_raw( $this->get_next_step_link() ) );
 	}
 
@@ -360,13 +360,13 @@ class AS_Admin_Setup_Wizard {
 	public function as_setup_priorities_save(){
 		check_admin_referer( 'as-setup' );
 		$property_field = (isset( $_POST['property_field'] ) )? sanitize_text_field( $_POST['property_field'] ): '';
-		$options = unserialize( get_option( 'wpas_options', array() ) );
+		$options = maybe_unserialize( get_option( 'wpas_options', array() ) );
 		if( !empty( $property_field ) && 'yes' === $property_field ){
 			$options['support_priority'] = '1';
 		} else{
 			$options['support_priority'] = 0;
 		}
-		update_option( 'wpas_options', serialize( $options ) );
+		update_option( 'wpas_options', $options );
 		wp_safe_redirect( esc_url_raw( $this->get_next_step_link() ) );
 	}
 
@@ -397,13 +397,13 @@ class AS_Admin_Setup_Wizard {
 	public function as_setup_departments_save(){
 		check_admin_referer( 'as-setup' );
 		$departments_field = (isset( $_POST['departments_field'] ) )? sanitize_text_field( $_POST['departments_field'] ): '';
-		$options = unserialize( get_option( 'wpas_options', array() ) );
+		$options = maybe_unserialize( get_option( 'wpas_options', array() ) );
 		if( !empty( $departments_field ) && 'yes' === $departments_field ){
 			$options['departments'] = '1';
 		} else{
 			$options['departments'] = '0';
 		}
-		update_option( 'wpas_options', serialize( $options ) );
+		update_option( 'wpas_options', $options );
 		// Don't show setup wizard link on plug-in activation.
 		update_option('wpas_plugin_setup', 'done');
 		wp_safe_redirect( esc_url_raw( $this->get_next_step_link() ) );

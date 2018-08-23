@@ -202,7 +202,7 @@ function wpas_single_activate() {
 	// We don't want to do that!
 	$admin->remove_cap('view_all_tickets');
 
-	add_option( 'wpas_options', serialize( get_settings_defaults() ) );
+	add_option( 'wpas_options', get_settings_defaults() );
 	add_option( 'wpas_setup', 'pending' );
 	add_option( 'wpas_db_version', WPAS_DB_VERSION );
 	add_option( 'wpas_version', WPAS_VERSION );
@@ -242,7 +242,7 @@ function wpas_get_blog_ids() {
  */
 function wpas_create_pages() {
 
-	$options = unserialize( get_option( 'wpas_options', array() ) );
+	$options = maybe_unserialize( get_option( 'wpas_options', array() ) );
 	$update  = false;
 
 	if ( empty( $options['ticket_list'] ) ) {
@@ -287,7 +287,7 @@ function wpas_create_pages() {
 	}
 
 	if ( $update ) {
-		update_option( 'wpas_options', serialize( $options ) );
+		update_option( 'wpas_options', $options );
 	}
 
 	if ( ! empty( $options['ticket_submit'] ) && ! empty( $options['ticket_list'] ) ) {
